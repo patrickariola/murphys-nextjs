@@ -1,0 +1,47 @@
+.green-background {
+    background-color: rgb(1, 74, 1);
+    height: 140px;
+  }
+
+  .grad-background {
+    background: url('/murphysbg.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    height: 800px;
+    
+  }
+
+  /* Target only the social media links */
+#topMenu .nav-item .nav-link {
+  margin-left: -7x;  /* Reduce this value to make icons closer */
+  margin-right: -7px; /* Reduce this value to make icons closer */
+}
+
+
+#topMenu{
+color: white;
+padding-left: 475px;
+}
+
+.nav-link{
+    color: white;
+    
+}
+
+.nav-link:hover{
+    color: white;
+}
+
+footer{
+    background-color:rgb(1, 74, 1);
+    color: white;
+    height: 150px; 
+   
+}
+
+.text{
+  font-size: 45px;
+}
+
+html, body {
+  overflow: hidden;
+}

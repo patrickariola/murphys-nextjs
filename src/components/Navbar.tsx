@@ -1,72 +1,49 @@
-/* eslint-disable react/jsx-indent, @typescript-eslint/indent */
-
 'use client';
 
-import { useSession } from 'next-auth/react';
-import { usePathname } from 'next/navigation';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { BoxArrowRight, Lock, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
-const NavBar: React.FC = () => {
-  const { data: session } = useSession();
-  const currentUser = session?.user?.email;
-  const userWithRole = session?.user as { email: string; randomKey: string };
-  const role = userWithRole?.randomKey;
-  const pathName = usePathname();
+
+export default function Navbar() {
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="/">Next.js Application Template</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto justify-content-start">
-            {currentUser
-              ? [
-                  <Nav.Link id="add-stuff-nav" href="/add" key="add" active={pathName === '/add'}>
-                    Add Stuff
-                  </Nav.Link>,
-                  <Nav.Link id="list-stuff-nav" href="/list" key="list" active={pathName === '/list'}>
-                    List Stuff
-                  </Nav.Link>,
-                ]
-              : ''}
-            {currentUser && role === 'ADMIN' ? (
-              <Nav.Link id="admin-stuff-nav" href="/admin" key="admin" active={pathName === '/admin'}>
-                Admin
-              </Nav.Link>
-            ) : (
-              ''
-            )}
-          </Nav>
-          <Nav>
-            {session ? (
-              <NavDropdown id="login-dropdown" title={currentUser}>
-                <NavDropdown.Item id="login-dropdown-sign-out" href="/api/auth/signout">
-                  <BoxArrowRight />
-                  Sign Out
-                </NavDropdown.Item>
-                <NavDropdown.Item id="login-dropdown-change-password" href="/auth/change-password">
-                  <Lock />
-                  Change Password
-                </NavDropdown.Item>
-              </NavDropdown>
-            ) : (
-              <NavDropdown id="login-dropdown" title="Login">
-                <NavDropdown.Item id="login-dropdown-sign-in" href="/auth/signin">
-                  <PersonFill />
-                  Sign in
-                </NavDropdown.Item>
-                <NavDropdown.Item id="login-dropdown-sign-up" href="/auth/signup">
-                  <PersonPlusFill />
-                  Sign up
-                </NavDropdown.Item>
-              </NavDropdown>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <div className="navbar green-background fixed">
+      <nav className="container-fluid justify-content-start">
+        <ul className="nav justify-content-start">
+          <li className="nav-item">
+            <a className="navbar-brand" href="#">
+              <img
+                src="/mlogo.png"
+                alt="Murphy's Logo"
+                style={{ height: '70px', paddingLeft: '6rem' }}
+                className="pb-2"
+              />
+            </a>
+          </li>
+        </ul>
+        <ul className="nav justify-content-end" id="topMenu">
+          <li className="nav-item">
+            <a className="nav-link" href="#">Home</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">About Us</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">St. Patrick&apos;s Day</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">To Go Ordering</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#"><i className="bi bi-instagram" /></a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#"><i className="bi bi-facebook " /></a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#"><i className="bi bi-twitter" /></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
-};
-
-export default NavBar;
+}
